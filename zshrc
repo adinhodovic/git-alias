@@ -8,6 +8,7 @@ alias gf='git fetch --prune'
 alias gcommit='git commit'
 alias gfixup='git commit --fixup=HEAD\^1'
 alias gca='git commit -a'
+alias gcal='gotask lint && gca'
 alias grebase='git rebase '
 alias gnb='git checkout -b'
 alias gcheckout='git checkout'
@@ -17,12 +18,14 @@ alias gpull='git pull --rebase'
 alias gclone='git clone '
 alias gstash='git stash '
 alias gadd='git add '
+alias gaddl='gotask lint && git add '
 alias gtags='git tag --list | sort -V'
 alias gpushtags='git push origin --tags'
 alias gtags-latest='git tag --list | sort -V | tail -n 1'
 alias gl-last-tag-to-HEAD='git log $(git tag --list | sort -V | tail -n 1)..master'
 alias gremotes='git remote -v'
 alias gremote='git remote'
+
 function gdom {
   query=$1
   default_remote_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
