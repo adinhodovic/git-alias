@@ -10,8 +10,8 @@ alias gfixup='git commit --fixup=HEAD\^1'
 alias gca='git commit -a'
 alias gcal='task lint && gca'
 alias grebase='git rebase '
-alias gnb='git checkout -b'
 alias gcheckout='git checkout'
+alias gnb='gcheckout -b '
 alias gpush='git push '
 alias greset='git reset '
 alias gpull='git pull --rebase'
@@ -221,7 +221,7 @@ compdef _git-pull gpullbranch
 
 gpushbranch() {
   branch=$(_remote_branch)
-  [ $? = 0 ] && eval git push $@ $branch
+  [ $? = 0 ] && eval git push --set-upstream $@ $branch
 }
 compdef _git-push gpushbranch
 
