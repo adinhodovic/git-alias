@@ -1,3 +1,7 @@
+alias ginit='git init'
+alias gcreate='ginit && hub create -p'
+alias gcreatepub='ginit && hub create'
+
 alias gs='git status -sb'
 alias gdc='git diff --cached'
 alias gl='git log --decorate'
