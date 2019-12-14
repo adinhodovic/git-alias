@@ -29,6 +29,7 @@ alias gtags-latest='git tag --list | sort -V | tail -n 1'
 alias gl-last-tag-to-HEAD='git log $(git tag --list | sort -V | tail -n 1)..master'
 alias gremotes='git remote -v'
 alias gremote='git remote'
+alias gremotea='git remote add'
 
 function gdom {
   query=$1
