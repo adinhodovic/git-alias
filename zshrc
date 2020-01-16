@@ -30,6 +30,7 @@ alias gl-last-tag-to-HEAD='git log $(git tag --list | sort -V | tail -n 1)..mast
 alias gremotes='git remote -v'
 alias gremote='git remote'
 alias gremotea='git remote add'
+alias gwip='gca -m WIP & gpush'
 
 function gdom {
   query=$1
