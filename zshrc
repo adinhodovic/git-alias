@@ -32,6 +32,9 @@ alias gremote='git remote'
 alias gremotea='git remote add'
 alias gwip='gca -m WIP & gpush'
 
+alias grel='hub release'
+alias gcrel='hub release create'
+
 function gdom {
   query=$1
   default_remote_branch=$(git remote show origin | grep "HEAD branch" | sed "s/.*: //")
