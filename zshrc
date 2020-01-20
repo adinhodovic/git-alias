@@ -34,7 +34,7 @@ alias gremotea='git remote add'
 alias gwip='gca -m WIP & gpush'
 
 alias grel='hub release'
-alias gcrel='hub release create'
+alias grelc='hub release create'
 
 function gdom {
   query=$1
