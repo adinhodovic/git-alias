@@ -31,7 +31,7 @@ alias gremotes='git remote -v'
 alias gremote='git remote'
 alias gremotea='git remote add'
 
-alias gwip='gca -m WIP & gpush'
+alias gwip='gca -m WIP && gpush'
 
 alias grel='hub release'
 alias grelc='hub release create'
