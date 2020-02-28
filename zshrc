@@ -107,8 +107,6 @@ gcheckoutcommit() {
 gcheckoutbranch() {
   local branch_name=$(fbranch)
   if [[ $branch_name =~ ^origin ]]; then
-    # Strip the origin part. If we don't do this it won't checkout a new branch but will be in
-    # detached state
     branch_name=$(echo $branch_name | sed -e 's/^origin\///')
   fi
   if [[ -n $branch_name ]]; then
