@@ -32,6 +32,7 @@ alias gl-last-tag-to-HEAD='git log $(git tag --list | sort -V | tail -n 1)..mast
 alias gremotes='git remote -v'
 alias gremote='git remote'
 alias gremotea='git remote add'
+alias gorigin='git config --get remote.origin.url'
 
 alias gwip='gca -m WIP && gpush'
 
@@ -65,7 +66,20 @@ gdob () { git diff origin/$(_local_branch) $@ }
 compdef _git-diff gdob
 
 alias ci-status='hub ci-status'
-alias pr='grom && gpushbranch && hub pull-request --no-edit'
+
+function pr {
+  local repo_origin=`gorigin`;
+
+
+  if [[ $repo_origin =~ "git@gitlab.com" ]]
+  then
+    grom && gpushbranch && lab merge-request -s -d
+  else
+    grom && gpushbranch && hub pull-request --no-edit
+  fi
+}
+
+alias pr=pr
 
 # Initiate _git which exposes the _git-* completions
 _git
