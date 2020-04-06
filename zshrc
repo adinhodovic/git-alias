@@ -37,6 +37,7 @@ alias gremotea='git remote add'
 alias gorigin='git config --get remote.origin.url'
 
 alias gwip='gca -m WIP && gpush'
+alias gupd='gca -m UPD && gpush'
 
 alias grel='hub release'
 alias grelc='hub release create'
