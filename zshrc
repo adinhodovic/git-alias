@@ -2,6 +2,9 @@ alias ginit='git init'
 alias gcreate='ginit && hub create -p'
 alias gcreatepub='ginit && hub create'
 
+alias glcreate='ginit && lab project create --private'
+alias glcreatepub='ginit && lab create --public'
+
 alias gs='git status -sb'
 alias gdc='git diff --cached'
 alias gl='git log --decorate'
