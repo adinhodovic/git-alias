@@ -79,9 +79,9 @@ function pr {
 
   if [[ $repo_origin =~ "git@gitlab.com" ]]
   then
-    grom && gpushbranch && lab merge-request -s -d
+    grom && gpushbranch && lab merge-request -s -d $@
   else
-    grom && gpushbranch && hub pull-request --no-edit
+    grom && gpushbranch && hub pull-request --no-edit $@
   fi
 }
 
