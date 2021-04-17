@@ -87,9 +87,6 @@ function pr {
 
 alias pr=pr
 
-# Initiate _git which exposes the _git-* completions
-_git
-
 # Retrieve local and remote branches sorted by last commit to the branch
 fbranch() {
   local branches=$(git branch --sort=committerdate -a |\
