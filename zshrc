@@ -1,6 +1,6 @@
 alias ginit='git init'
-alias gcreate='ginit && hub create -p'
-alias gcreatepub='ginit && hub create'
+alias gcreate='ginit && gh create --private'
+alias gcreatepub='ginit && gh create --public'
 
 alias glcreate='ginit && lab project create --private'
 alias glcreatepub='ginit && lab create --public'
@@ -42,8 +42,8 @@ alias gorigin='git config --get remote.origin.url'
 alias gwip='gca -m WIP && gpush'
 alias gupd='gca -m UPD && gpush'
 
-alias grel='hub release'
-alias grelc='hub release create'
+alias grel='gh release'
+alias grelc='grel create'
 
 function gdom {
   query=$1
@@ -71,8 +71,6 @@ function grom {
 gdob () { git diff origin/$(_local_branch) $@ }
 compdef _git-diff gdob
 
-alias ci-status='hub ci-status'
-
 function pr {
   local repo_origin=`gorigin`;
 
@@ -81,7 +79,7 @@ function pr {
   then
     grom && gpushbranch && lab merge-request -s -d $@
   else
-    grom && gpushbranch && hub pull-request --no-edit $@
+    grom && gpushbranch && gh pr create --fill $@
   fi
 }
 
@@ -282,7 +280,7 @@ function gcherrynewbranch {
 function gcherrypr {
   python3 -c "import git_helpers; git_helpers.git_cherry_pick_new_branch()"
   gpushbranch
-  hub pull-request --no-edit
+  gh pr create --fill
 }
 
 function gdelbranch {
