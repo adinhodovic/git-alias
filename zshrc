@@ -74,12 +74,13 @@ compdef _git-diff gdob
 function pr {
   local repo_origin=`gorigin`;
 
+  default_remote_branch=$(git remote show origin | grep "HEAD branch" | sed "s/.*: //")
 
   if [[ $repo_origin =~ "git@gitlab.com" ]]
   then
     grom && gpushbranch && lab merge-request -s -d $@
   else
-    grom && gpushbranch && gh pr create --fill $@
+    grom && gpushbranch && gh pr create --fill --base $default_remote_branch $@
   fi
 }
 
