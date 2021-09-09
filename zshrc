@@ -1,6 +1,6 @@
 alias ginit='git init'
-alias gcreate='ginit && gh create --private'
-alias gcreatepub='ginit && gh create --public'
+alias gcreate='ginit && gh repo create --private'
+alias gcreatepub='ginit && gh repo create --public'
 
 alias glcreate='ginit && lab project create --private'
 alias glcreatepub='ginit && lab create --public'
