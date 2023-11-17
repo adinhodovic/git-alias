@@ -16,7 +16,6 @@ alias gcommit='git commit'
 alias gfixup='gf && gcommit --fixup=HEAD'
 alias gca='git commit -a'
 alias gcap='gca && gpush'
-alias gcal='task lint && gca'
 alias grebase='git rebase '
 alias grebasec='grebase --continue '
 alias grebasea='grebase --abort '
@@ -29,7 +28,6 @@ alias gclone='git clone '
 alias gstash='git stash '
 alias gadd='git add '
 alias gadda='git add .'
-alias gaddl='task lint && git add '
 alias gtags='git tag --list | sort -V'
 alias gpushtags='git push origin --tags'
 alias gtags-latest='git tag --list | sort -V | tail -n 1'
@@ -86,17 +84,7 @@ function pr {
 
 alias pr=pr
 
-# Retrieve local and remote branches sorted by last commit to the branch
-fbranch() {
-  local branches=$(git branch --sort=committerdate -a |\
-    cut -c 3- |\
-    sed 's/^remotes\/origin\///' |\
-    sed '/HEAD/d' |\
-    uniq)
-
-  local branch=$(echo $branches | fzf --ansi --exact --tac --multi)
-  echo $branch
-}
+alias grom=grom
 
 function gshow {
   if [ -n "$1" ]; then
@@ -121,7 +109,7 @@ gcheckoutcommit() {
 }
 
 gcheckoutbranch() {
-  local branch_name=$(fbranch)
+  local branch_name=$(_fzf_git_branches)
   if [[ $branch_name =~ ^origin ]]; then
     branch_name=$(echo $branch_name | sed -e 's/^origin\///')
   fi
@@ -133,7 +121,7 @@ gcheckoutbranch() {
 }
 
 gresetbranch() {
-  local branch_name=$(fbranch)
+  local branch_name=$(_fzf_git_branches)
   if [[ -n $branch_name ]]; then
     cmd="git reset $@ $branch_name"
     print -s $cmd
@@ -162,7 +150,7 @@ grbc() {
 }
 
 grbb() {
-  branch=`fbranch`
+  branch=$(_git_fzf_branches)
   [[ -n $branch ]] && print -z git rebase $@ origin/$branch
 }
 
@@ -183,7 +171,7 @@ gresetcommit() {
 }
 
 gresetbranch() {
-  branch=`fbranch`
+  branch=$(_git_fzf_branches)
   [[ -n $branch ]] && print -z git reset $@ "$branch"
 }
 
@@ -285,7 +273,7 @@ function gcherrypr {
 }
 
 function gdelbranch {
-  branches=$(fbranch)
+  branches=$(_git_fzf_branches)
   if [ -z "$branches" ]; then
     echo Provide a branch name
     return
