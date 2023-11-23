@@ -43,6 +43,8 @@ alias gupd='gca -m UPD && gpush'
 alias grel='gh release'
 alias grelc='grel create'
 
+alias gdots='git commit -m "chore: Update dotfiles" && git push'
+
 function gdom {
   query=$1
   default_remote_branch=$(git remote show origin | grep "HEAD branch" | sed "s/.*: //")
