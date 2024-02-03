@@ -37,13 +37,14 @@ alias gremote='git remote'
 alias gremotea='git remote add'
 alias gorigin='git config --get remote.origin.url'
 
-alias gwip='gca -m WIP && gpush'
-alias gupd='gca -m UPD && gpush'
 
 alias grel='gh release'
 alias grelc='grel create'
 
-alias gdots='git commit -m "chore: Update dotfiles" && git push'
+alias gwip='gca -m WIP && gpush'
+alias gupd='gca -m UPD && gpush'
+alias gdots='gca -m "chore: Update dotfiles" && git push'
+alias gnotes='gca -m "docs: Update notes" && gpush'
 
 function gdom {
   query=$1
