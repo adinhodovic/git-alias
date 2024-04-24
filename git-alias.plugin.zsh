@@ -12,6 +12,8 @@ alias glogS='git log -p -S '
 alias gcommitgrep='git log --grep '
 alias gpickaxe='git log -p -S '
 alias gf='git fetch --prune'
+# Git fetch prune local branches that are deleted on remote
+alias gfprunelocal="git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -D $branch; done"
 alias gcommit='git commit'
 alias gfixup='gf && gcommit --fixup=HEAD'
 alias gca='git commit -a'
