@@ -2,13 +2,8 @@ alias ginit='git init'
 alias gcreate='ginit && gh repo create --private'
 alias gcreatepub='ginit && gh repo create --public'
 
-alias glcreate='ginit && lab project create --private'
-alias glcreatepub='ginit && lab create --public'
-
 alias gs='git status -sb'
 alias gdc='git diff --cached'
-alias gl='git log --decorate'
-alias glogS='git log -p -S '
 alias gcommitgrep='git log --grep '
 alias gpickaxe='git log -p -S '
 alias gf='git fetch --prune'
@@ -28,7 +23,6 @@ alias gcap='gca && gpush'
 alias grebase='git rebase '
 alias grebasec='grebase --continue '
 alias grebasea='grebase --abort '
-alias gcheckout='git checkout'
 alias gnb='gcheckout -b '
 alias gpush='git push '
 alias greset='git reset '
@@ -37,15 +31,11 @@ alias gclone='git clone '
 alias gstash='git stash '
 alias gadd='git add '
 alias gadda='git add .'
-alias gtags='git tag --list | sort -V'
 alias gpushtags='git push origin --tags'
-alias gtags-latest='git tag --list | sort -V | tail -n 1'
-alias gl-last-tag-to-HEAD='git log $(git tag --list | sort -V | tail -n 1)..master'
 alias gremotes='git remote -v'
 alias gremote='git remote'
 alias gremotea='git remote add'
 alias gorigin='git config --get remote.origin.url'
-
 
 alias grel='gh release'
 alias grelc='grel create'
@@ -111,14 +101,6 @@ function gshow {
   fi
 }
 
-gcheckoutcommit() {
-  local commit=`fcommit`
-  if [[ -n $commit ]]; then
-    cmd="git checkout $@ $commit"
-    print -s $cmd
-    eval $cmd
-  fi
-}
 
 gcheckoutbranch() {
   local branch_name=$(_fzf_git_branches)
@@ -142,9 +124,8 @@ gresetbranch() {
 }
 compdef _git-reset gresetbranch
 
-alias gcc=gcheckoutcommit
 alias gcb=gcheckoutbranch
-compdef _git-checkout gcheckoutcommit gcheckoutbranch
+compdef _git-checkout gcheckoutbranch
 
 gresetfilefromhead() {
   file=$(git diff-tree --no-commit-id --name-only -r HEAD | fzf)
