@@ -89,6 +89,21 @@ alias pr=pr
 
 alias grom=grom
 
+function gsma {
+  git submodule foreach '
+    submodule_sha=$(cd $toplevel && git ls-tree origin/main -- $path | awk "{print \$3}")
+    if [ -n "$submodule_sha" ]; then
+      echo "Found SHA for $path: $submodule_sha"
+      git fetch
+      git checkout $submodule_sha
+    else
+      echo "No SHA found for $path in origin/main. Skipping."
+    fi
+  '
+}
+
+alias gsma=gsma
+
 function gshow {
   if [ -n "$1" ]; then
     git show "$1"
